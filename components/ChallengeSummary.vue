@@ -1,64 +1,38 @@
 <template>
-  <v-card
-    class="mx-auto"
-    max-width="400"
-    elevation="10"
-  >
-    <v-img
-      class="white--text align-end"
-      height="200px"
-      :src="image"
-    >
-      <v-card-title>{{ name }}</v-card-title>
-    </v-img>
 
-    <v-card-subtitle class="pb-0">Semester {{ semester }}</v-card-subtitle>
+        <v-card hover
+          max-width="400"
+        >
+          <v-img
+            class="white--text align-end"
+            height="200px"
+            :src="image"
+          >
+            <v-card-title>{{ name }}</v-card-title>
+          </v-img>
+                
+          <v-card-media
+            src="https://raw.githubusercontent.com/ijklim/simon-game/gh-pages/assets/img/bg--game-pad.jpg"
+            height="150px"
+          >
+          </v-card-media>
+          
+          <v-card-text class="text--primary">
+            <div>{{ description }}</div>
+          </v-card-text>
+          
+          <v-card-actions>
+            <v-chip>
+              <v-icon left color="red">mdi-account</v-icon>
+              {{ difficulty }}
+            </v-chip>
+            <v-spacer></v-spacer>
+            <v-icon color=green v-if="hasUnitTests">mdi-test-tube</v-icon>
+            <v-icon color=red v-if="!hasUnitTests">mdi-test-tube-off</v-icon>
+          </v-card-actions>
+          
+        </v-card>
 
-    <v-card-text class="text--primary">
-      <div>{{ teacher }}</div>
-      <div class="blue-grey--text text--lighten-2" v-if="course">{{ course }}</div>
-    </v-card-text>
-
-    <v-card-actions>
-        <v-btn text color="red" :href="course ? course : '#'" :disabled="!course">
-            Go to course
-            <v-icon>mdi-double_arrow</v-icon>
-        </v-btn>
-        <v-spacer></v-spacer>
-        <v-tooltip bottom>
-            <template v-slot:activator="{ on }">
-                <v-btn v-if="toledo" v-on="on" text icon color="red" :href="toledo">
-                    <v-icon>mdi-school</v-icon>
-                </v-btn>
-            </template>
-            <span>Toledo</span>
-        </v-tooltip>
-        <v-tooltip bottom>
-            <template v-slot:activator="{ on }">
-                <v-btn v-if="ects" v-on="on" text icon color="red" :href="ects">
-                    <v-icon>mdi-information</v-icon>
-                </v-btn>
-            </template>
-            <span>ECTS</span>
-        </v-tooltip>
-        <v-tooltip bottom>
-            <template v-slot:activator="{ on }">
-                <v-btn v-if="slack" v-on="on" text icon color="red" :href="slack">
-                    <v-icon>mdi-slack</v-icon>
-                </v-btn>
-            </template>
-            <span>Slack</span>
-        </v-tooltip>
-        <v-tooltip bottom>
-            <template v-slot:activator="{ on }">
-                <v-btn v-if="github" v-on="on" text icon color="red" :href="github">
-                    <v-icon>mdi-github-circle</v-icon>
-                </v-btn>
-            </template>
-            <span>GitHub</span>
-        </v-tooltip>
-    </v-card-actions>
-  </v-card>
 </template>
 
 <script>
@@ -75,29 +49,20 @@ export default {
         }
     },
     computed: {
+        chapter: function() {
+            return this.page.frontmatter.chapter; 
+        },
         name: function() {
-            return this.page.frontmatter.name; 
+            return this.page.frontmatter.name;
         },
-        course: function() {
-            return this.page.frontmatter.course;
+        description: function() {
+            return this.page.frontmatter.description;
         },
-        teacher: function() {
-            return this.page.frontmatter.teacher;
+        difficulty: function() {
+            return this.page.frontmatter.difficulty;
         },
-        semester: function() {
-            return this.page.frontmatter.semester;
-        },
-        toledo: function() {
-            return this.page.frontmatter.toledo;
-        },
-        ects: function() {
-            return this.page.frontmatter.ects;
-        },
-        github: function () {
-            return this.page.frontmatter.github;
-        },
-        slack: function () {
-            return this.page.frontmatter.slack;
+        keywords: function() {
+            return this.page.frontmatter.keywords;
         },
         image: function() {
             let image_url = this.page.frontmatter.image;
@@ -106,7 +71,16 @@ export default {
             }
             image_url = `~${this.page.path}${image_url}`; // TODO: This is not yet supported by vuepress...
             return image_url;
+        },
+        hasUnitTests: function() {
+            return this.page.frontmatter.unitTests;
         }
     }
 }
 </script>
+
+<style scoped>
+.border {
+    border-radius:50px;
+}
+</style>
