@@ -13,5 +13,10 @@
     "vives"
   ],
   "author": "Nico De Witte <nico.dewitte@vives.be>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@mdi/font": "^4.7.95",
+    "@vuepress/theme-default": "^1.2.0",
+    "vuetify": "^2.1.14"
+  }
 }
