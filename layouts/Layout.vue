@@ -8,7 +8,8 @@
             <v-img src="/images/logo.png" alt="DevBit logo" contain />
           </v-col>
         </v-row>
-        <Content />
+        <overview v-if="onOverview" />
+        <Content v-else />
       </v-container>
     </v-content>
   </v-app>
@@ -17,12 +18,19 @@
 <script>
 
 import NavBar from '@theme/components/Navbar.vue'
+import Overview from '@theme/components/Overview.vue'
 
 export default {
   name: 'layout',
   components: {
-    NavBar
+    NavBar,
+    Overview
   },
+  computed: {
+    onOverview() {
+      return this.$page.path === '/';
+    }
+  }
 }
 </script>
 
