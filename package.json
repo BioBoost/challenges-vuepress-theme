@@ -1,0 +1,17 @@
+{
+  "name": "challenges-vuepress-theme",
+  "version": "0.0.1",
+  "description": "VuePress theme for programming challenges",
+  "main": "layouts/Layout.vue",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vuepress",
+    "programming",
+    "challenges",
+    "vives"
+  ],
+  "author": "Nico De Witte <nico.dewitte@vives.be>",
+  "license": "MIT"
+}
