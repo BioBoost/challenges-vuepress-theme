@@ -8,8 +8,8 @@
             <v-img src="/images/logo.png" alt="DevBit logo" contain />
           </v-col>
         </v-row>
-        <Content />
         <overview v-if="onOverview" />
+        <Content v-if="!onOverview" />
       </v-container>
     </v-content>
   </v-app>
