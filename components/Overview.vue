@@ -1,6 +1,6 @@
 <template>
     <v-row>
-      <v-col class="challenge flex-grow-0" v-for="page in challenges()">
+      <v-col class="challenge" cols="3" v-for="page in challenges()">
           <ChallengeSummary :page="page"></ChallengeSummary>
       </v-col>
     </v-row>
@@ -16,12 +16,18 @@ export default {
   },
   methods: {
     challenges() {
+      // Refactor to config !
+      const difficulties = ['easy', 'medium', 'hard', 'expert'];
+      const exclusions = ['/'];
+
       return this.$site.pages
-      .filter((page) => page.path.startsWith("/challenges/"))
-      // .filter((page) => !page.frontmatter.draft )
-      // .sort((a, b) => {
-      //   return a.frontmatter.semester - b.frontmatter.semester
-      // })
+      .filter((page) => !exclusions.includes(page.path))
+      .filter((page) => !page.frontmatter.draft)
+      .sort((a, b) => {
+        const aDifficulty = (a.frontmatter.difficulty || difficulties[0]).toLowerCase();
+        const bDifficulty = (b.frontmatter.difficulty || difficulties[0]).toLowerCase();
+        return difficulties.indexOf(aDifficulty) - difficulties.indexOf(bDifficulty);
+      })
     }
   },
 }
