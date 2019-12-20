@@ -1,7 +1,9 @@
 <template>
   <v-card hover>
-    <v-card-title class="grey darken-3 white--text">{{ name }}</v-card-title>
+    <div v-if="isSolved" class="ribbon ribbon-top-right rbGreen"><span>Solved !</span></div>
 
+    <v-card-title class="grey darken-3 white--text">{{ name }}</v-card-title>
+    
     <v-img height="100px" :src="image" />
     
     <v-card-text class="text--primary">
@@ -98,4 +100,70 @@ export default {
 </script>
 
 <style scoped>
+/* Source of Ribbon: https://codepen.io/nxworld/pen/oLdoWb */
+@import url(https://fonts.googleapis.com/css?family=Lato:700);
+
+.ribbon {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  position: absolute;
+  z-index: 50;
+  border-radius: 0 !important;
+}
+
+.ribbon::before,
+.ribbon::after {
+  position: absolute;
+  z-index: -1;
+  content: '';
+  display: block;
+  border-width: 5px;
+  border-style: solid;
+}
+
+.ribbon span {
+  position: absolute;
+  display: block;
+  width: 195px;
+  padding: 6px 0;
+  color: white;
+  font: 700 12px/1 'Lato', sans-serif;
+  text-shadow: 0 1px 1px rgba(0,0,0,.2);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.ribbon-top-right {
+  top: -10px;
+  right: -10px;
+}
+.ribbon-top-right::before,
+.ribbon-top-right::after {
+  border-top-color: transparent;
+  border-right-color: transparent;
+}
+.ribbon-top-right::before {
+  top: 0;
+  left: 0;
+}
+.ribbon-top-right::after {
+  bottom: 0;
+  right: 0;
+}
+.ribbon-top-right span {
+  left: -40px;
+  top: 30px;
+  transform: rotate(45deg);
+}
+
+.ribbon.rbGreen > span {
+  background-color: #4caf50;
+}
+
+.ribbon.rbGreen::before,
+.ribbon.rbGreen::after {
+  border-color:  #4caf50;
+  border-radius: 0;
+}
 </style>
