@@ -1,5 +1,5 @@
 {
-  "name": "challenges-vuepress-theme",
+  "name": "vuepress-theme-challenges",
   "version": "0.0.1",
   "description": "VuePress theme for programming challenges",
   "main": "index.js",
@@ -12,7 +12,7 @@
     "challenges",
     "vives"
   ],
-  "author": "Nico De Witte <nico.dewitte@vives.be>",
+  "author": "Nico De Witte",
   "license": "MIT",
   "dependencies": {
     "@mdi/font": "^4.7.95",
